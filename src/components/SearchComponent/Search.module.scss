@@ -1,0 +1,55 @@
+@import "../../scss/varibles.scss";
+.search {
+  display: flex;
+  justify-content: center;
+}
+.form {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  background-color: $main-yellow;
+  width: 590px;
+  border-radius: 10px 5px 5px 10px;
+}
+.inputBox {
+  position: relative;
+}
+.input {
+  padding: 12px 30px;
+  padding-left: 15px;
+  width: 500px;
+  border: 0;
+  font-size: 16px;
+  border: 2px solid $main-yellow;
+  border-radius: 10px 5px 5px 10px;
+}
+input:focus .form {
+  border: none;
+}
+.clearIcon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.3;
+  position: absolute;
+  top: 16px;
+  right: 10px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+.button {
+  border-radius: 7px;
+  background-color: $main-yellow;
+  border: none;
+  font-size: 16px;
+  padding: 13px 20px;
+  color: $main-text;
+  width: auto;
+  height: auto;
+  position: absolute;
+  right: 0px;
+  top: 1px;
+  cursor: pointer;
+}

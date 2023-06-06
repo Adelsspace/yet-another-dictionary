@@ -1,0 +1,32 @@
+@import "../../scss/varibles.scss";
+.container {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 538px) {
+    flex-direction: column;
+  }
+}
+.select {
+  min-width: 200px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: '"Noto Sans", Roboto, system-ui, Tahoma, sans-serif';
+}
+.button {
+  background-color: #ffffff;
+  border-radius: 30px;
+  padding: 10px 20px;
+  min-width: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color $duration ease-in-out,
+    border-color $duration ease-in-out;
+  border: 1px solid transparent;
+
+  &:hover {
+    border-color: #4096ff;
+    // background-color: darken(white, 8%);
+  }
+}
