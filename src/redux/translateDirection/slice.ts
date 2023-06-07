@@ -4,6 +4,7 @@ const initialState = {
   firstLang: ["Русский", "ru"],
   secondLang: ["Английский", "en"],
   searchValue: "",
+  searchResults: false,
 };
 
 const TranslateDirectionSlice = createSlice({
@@ -19,9 +20,12 @@ const TranslateDirectionSlice = createSlice({
     setSearchValue(state, action: PayloadAction<string>) {
       state.searchValue = action.payload;
     },
+    setSearchResults(state, action: PayloadAction<boolean>) {
+      state.searchResults = action.payload;
+    },
   },
 });
 
-export const { setFirstLang, setSecondLang, setSearchValue } =
+export const { setFirstLang, setSecondLang, setSearchValue, setSearchResults } =
   TranslateDirectionSlice.actions;
 export default TranslateDirectionSlice.reducer;

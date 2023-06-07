@@ -17,6 +17,10 @@ export const yandexAPI = createApi({
           ui: "ru",
         },
       }),
+      transformResponse: (response: any) => {
+        const { def: data } = response;
+        return data;
+      },
     }),
   }),
 });
