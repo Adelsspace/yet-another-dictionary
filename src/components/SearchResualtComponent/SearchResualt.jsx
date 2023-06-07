@@ -14,7 +14,7 @@ export const SearchResualt = () => {
   const searchValue = useSelector(selectSearchValue);
 
   const { data } = yandexAPI.useFetachTranslateQuery(
-    `${firstLang}-${secondLang}&text=${searchValue}`,
+    { firstLang, secondLang, searchValue },
     { skip: !searchValue.length }
   );
   const findResult = data?.def ?? [];

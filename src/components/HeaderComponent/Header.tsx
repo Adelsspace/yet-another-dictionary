@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
-import { Search } from "../SearchComponent/Search";
 
 export const Header = () => {
   return (
@@ -18,7 +17,6 @@ export const Header = () => {
           </Link>
         </div>
       </div>
-      <Search />
     </>
   );
 };

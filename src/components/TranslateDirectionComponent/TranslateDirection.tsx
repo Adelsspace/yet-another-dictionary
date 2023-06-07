@@ -6,54 +6,21 @@ import {
   setFirstLang,
   setSecondLang,
 } from "../../redux/translateDirection/slice";
-
-const languageNameToCodePair = {
-  Русский: ["Русский", "ru"],
-  Английский: ["Английский", "en"],
-  Испанский: ["Испанский", "es"],
-  Немецкий: ["Немецкий", "de"],
-  Французкий: ["Французкий", "fr"],
-  Турецкий: ["Турецкий", "tr"],
-  Итальянский: ["Итальянский", "it"],
-};
-
-const translateFrom = Object.keys(languageNameToCodePair);
-
-const langueagePairs = {
-  Русский: [
-    "Английский",
-    "Испанский",
-    "Немецкий",
-    "Французкий",
-    "Турецкий",
-    "Итальянский",
-    "Русский",
-  ],
-  Английский: [
-    "Русский",
-    "Испанский",
-    "Немецкий",
-    "Французкий",
-    "Турецкий",
-    "Итальянский",
-    "Английский",
-  ],
-  Немецкий: ["Русский", "Английский"],
-  Французкий: ["Русский", "Английский"],
-  Испанский: ["Русский", "Английский"],
-  Турецкий: ["Русский", "Английский"],
-  Итальянский: ["Русский", "Английский"],
-};
+import {
+  languageNameToCodePair,
+  languagesKeys,
+  langueagePairs,
+} from "../../assets/languageStore";
 
 type LanguageNames = keyof typeof langueagePairs;
 
 export const TranslateDirection: React.FC = () => {
   const dispatch = useDispatch();
   const [listOfLanguages, setListOfLanguages] = useState(
-    langueagePairs[translateFrom[0] as LanguageNames]
+    langueagePairs[languagesKeys[0] as LanguageNames]
   );
   const [langueageSecond, setLangueageSecond] = useState(
-    langueagePairs[translateFrom[0] as LanguageNames][0]
+    langueagePairs[languagesKeys[0] as LanguageNames][0]
   );
 
   const handleProvinceChange = (value: LanguageNames) => {
@@ -73,10 +40,10 @@ export const TranslateDirection: React.FC = () => {
   return (
     <Space wrap className={styles.container}>
       <Select
-        defaultValue={translateFrom[0] as any}
+        defaultValue={languagesKeys[0] as any}
         className={styles.select}
         onChange={handleProvinceChange}
-        options={translateFrom.map((lang) => ({
+        options={languagesKeys.map((lang) => ({
           label: lang,
           value: lang,
         }))}
