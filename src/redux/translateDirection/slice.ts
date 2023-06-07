@@ -4,6 +4,7 @@ const initialState = {
   firstLang: ["Русский", "ru"],
   secondLang: ["Английский", "en"],
   searchValue: "",
+  searchResults: false,
 };
 
 const TranslateDirectionSlice = createSlice({

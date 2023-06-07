@@ -1,4 +1,24 @@
 .wrapper {
-  display: flex;
-  justify-content: center;
+  padding: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 50px #c9c9c9;
+  box-shadow: 0 0 50px #c9c9c9;
+  width: 400px;
+}
+
+.header {
+  text-transform: lowercase;
+  font-weight: bold;
+  padding: 15px;
+}
+.translateWrapper {
+  padding-left: 20px;
+}
+.partOfSpeach {
+  color: rgb(24, 175, 24);
+  font-weight: 500;
+}
+.translate {
+  color: black;
+  font-weight: 400;
 }

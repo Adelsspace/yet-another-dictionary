@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import { API_KEY } from "../API_KEY";
+import { fetchedDataType } from "../@types/types";
 
 export const yandexAPI = createApi({
   reducerPath: "yandexAPI",
@@ -8,15 +9,18 @@ export const yandexAPI = createApi({
   }),
   endpoints: (build) => ({
     fetachTranslate: build.query({
-      query: ({ firstLang, secondLang, searchValue }) => ({
+      query: ({ firstLangCode, secondLangCode, searchValue }) => ({
         url: "",
         params: {
           key: API_KEY,
-          lang: `${firstLang}-${secondLang}`,
+          lang: `${firstLangCode}-${secondLangCode}`,
           text: searchValue,
           ui: "ru",
         },
       }),
+      transformResponse: (response: fetchedDataType) => {
+        return response.def;
+      },
     }),
   }),
 });
