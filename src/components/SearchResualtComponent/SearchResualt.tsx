@@ -1,40 +1,39 @@
 import {
-  selectFirstLang,
-  selectSecondLang,
+  selectFirstLangCode,
+  selectSecondLangCode,
   selectSearchValue,
 } from "../../redux/translateDirection/selectors";
 import { yandexAPI } from "../../redux/yandexApi";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import style from "./SearchResualt.module.scss";
-import { setSearchResults } from "../../redux/translateDirection/slice";
 import NotFound from "../../pages/NotFound";
 
 export const SearchResualt = () => {
-  const firstLang = useSelector(selectFirstLang)[1];
-  const secondLang = useSelector(selectSecondLang)[1];
+  const firstLangCode = useSelector(selectFirstLangCode);
+  const secondLangCode = useSelector(selectSecondLangCode);
   const searchValue = useSelector(selectSearchValue);
-  const dispatch = useDispatch();
-
+  console.log(firstLangCode, secondLangCode);
   const { data, error } = yandexAPI.useFetachTranslateQuery(
-    { firstLang, secondLang, searchValue },
+    { firstLangCode, secondLangCode, searchValue },
     { skip: !searchValue.length }
   );
   const findResult = data ?? [];
-  dispatch(setSearchResults(true));
-
+  console.log(findResult, 122);
   return (
     <>
-      {error && <div>Ошибка при обращении к серверу</div>}
+      {error && (
+        <div>Ошибка при обращении к серверу: {JSON.stringify(error)}</div>
+      )}
       {Boolean(findResult.length) ? (
         <div className={style.wrapper}>
-          <div className={style.header}>{findResult[0].text}</div>
+          <div className={style.header}>{findResult[0]?.text}</div>
           <div>
             <ul>
-              {findResult.map((obj: any) => (
+              {findResult.map((obj) => (
                 <li key={obj.pos} className={style.partOfSpeach}>
                   {obj.pos}
                   <ol className={style.translateWrapper}>
-                    {obj.tr.map((translate: any, i: number) => (
+                    {obj.tr.map((translate, i: number) => (
                       <li key={i} className={style.translate}>
                         {translate.text}
                       </li>
