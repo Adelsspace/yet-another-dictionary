@@ -1,37 +1,50 @@
-export type fetchedDataType = {
+export type FetchedDataType = {
   head: object;
-  def: itemData[];
+  def: ItemData[];
 };
 
-type itemData = {
+type ItemData = {
   text: string;
   pos: string;
-  tr: translateArrayType[];
+  tr: TranslateArrayType[];
   ts?: string;
   gen?: string;
   anm?: string;
 };
 
-type translateArrayType = {
+type TranslateArrayType = {
   text: string;
   pos: string;
   fr: number;
   get: string;
-  syn: arrayOfSyn[];
-  mean: arrayOfObject[];
-  ex: arrayOfExamples[];
+  syn: ArrayOfSyn[];
+  mean: ArrayOfObject[];
+  ex: ArrayOfExamples[];
 };
 
-type arrayOfObject = {
+type ArrayOfObject = {
   text: string;
 };
-type arrayOfExamples = {
+type ArrayOfExamples = {
   text: string;
-  tr: arrayOfObject;
+  tr: ArrayOfObject;
 };
-type arrayOfSyn = {
+type ArrayOfSyn = {
   text: string;
   pos: string;
   gen?: string;
   fr: number;
+};
+
+export type UserData = {
+  login: string;
+  password: string;
+  history: string[];
+  favorites: string[];
+  isLogged: boolean;
+};
+
+export type Inputs = {
+  login: string;
+  password: string;
 };
