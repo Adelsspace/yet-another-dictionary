@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
+import { AcountInfo, Authentication } from "../index";
+import { useSelector } from "react-redux";
+import { selectIsLogged } from "../../redux/user/selectors";
 
 export const Header = () => {
+  const isLogged = useSelector(selectIsLogged);
   return (
     <>
       <div className="header">
@@ -15,6 +19,7 @@ export const Header = () => {
               </div>
             </div>
           </Link>
+          {isLogged ? <AcountInfo /> : <Authentication />}
         </div>
       </div>
     </>

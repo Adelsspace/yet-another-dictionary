@@ -35,3 +35,16 @@ type arrayOfSyn = {
   gen?: string;
   fr: number;
 };
+
+export type userData = {
+  login: string;
+  password: string;
+  history: string[];
+  favorites: string[];
+  isLogged: boolean;
+};
+
+export type Inputs = {
+  login: string;
+  password: string;
+};

@@ -12,13 +12,12 @@ export const SearchResualt = () => {
   const firstLangCode = useSelector(selectFirstLangCode);
   const secondLangCode = useSelector(selectSecondLangCode);
   const searchValue = useSelector(selectSearchValue);
-  console.log(firstLangCode, secondLangCode);
   const { data, error } = yandexAPI.useFetachTranslateQuery(
     { firstLangCode, secondLangCode, searchValue },
     { skip: !searchValue.length }
   );
   const findResult = data ?? [];
-  console.log(findResult, 122);
+
   return (
     <>
       {error && (
