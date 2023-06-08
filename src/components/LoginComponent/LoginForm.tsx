@@ -74,10 +74,15 @@ export const LoginForm = () => {
               <p> {errors?.password?.message || "Error!"}</p>
             )}
           </div>
-          <input type="submit" disabled={!isValid} className={style.btn} />
+          <input
+            type="submit"
+            disabled={!isValid}
+            className={style.btn}
+            value={"Войти"}
+          />
         </form>
         <p className={style.text}>
-          Ещё нет акаунта? <Link to="/sigin"> Регистрация</Link>
+          Ещё нет акаунта? <Link to="/signup"> Регистрация</Link>
         </p>
       </div>
     </div>

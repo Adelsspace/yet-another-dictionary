@@ -1,7 +1,7 @@
-import { userData } from "../@types/types";
+import { UserData } from "../@types/types";
 
 export const getUsersObjectFromDatabase = () => {
   const allUsersString = localStorage.getItem("users") as string;
-  const allUsers: userData[] = JSON.parse(allUsersString);
+  const allUsers: UserData[] = JSON.parse(allUsersString);
   return allUsers;
 };

@@ -6,9 +6,9 @@ import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Registration } from "./pages/Registration";
 import { searchLoggedUser } from "./utils/searchLoggedUser";
-import { useDispatch, useSelector } from "react-redux";
-import { setIsLogged, setLogin } from "./redux/user/slice";
-import { selectIsLogged, selectLogin } from "./redux/user/selectors";
+import { useDispatch } from "react-redux";
+import { setLoginAndIsLoggedField } from "./redux/user/slice";
+
 function App() {
   const dispatch = useDispatch();
   if (!localStorage.getItem("users"))
@@ -17,8 +17,7 @@ function App() {
   const loggedUser = searchLoggedUser();
 
   if (loggedUser) {
-    dispatch(setIsLogged(true));
-    dispatch(setLogin(loggedUser));
+    dispatch(setLoginAndIsLoggedField(loggedUser));
   }
   return (
     <Routes>

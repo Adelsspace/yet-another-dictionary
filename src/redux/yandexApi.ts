@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import { API_KEY } from "../API_KEY";
-import { fetchedDataType } from "../@types/types";
+import { FetchedDataType } from "../@types/types";
 
 export const yandexAPI = createApi({
   reducerPath: "yandexAPI",
@@ -18,7 +18,7 @@ export const yandexAPI = createApi({
           ui: "ru",
         },
       }),
-      transformResponse: (response: fetchedDataType) => {
+      transformResponse: (response: FetchedDataType) => {
         return response.def;
       },
     }),

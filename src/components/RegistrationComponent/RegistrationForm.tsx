@@ -2,7 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import style from "./Registration.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { isUserInDatabase } from "../../utils/isUserInDatabase";
-import { Inputs, userData } from "../../@types/types";
+import { Inputs, UserData } from "../../@types/types";
 import { useDispatch } from "react-redux";
 import { setIsLogged, setLogin } from "../../redux/user/slice";
 
@@ -21,7 +21,7 @@ export const RegistrationForm = () => {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const { login, password } = data;
 
-    const newUser: userData = {
+    const newUser: UserData = {
       login,
       password,
       history: [],
@@ -86,7 +86,12 @@ export const RegistrationForm = () => {
               <p> {errors?.password?.message || "Error!"}</p>
             )}
           </div>
-          <input type="submit" disabled={!isValid} className={style.btn} />
+          <input
+            type="submit"
+            disabled={!isValid}
+            className={style.btn}
+            value={"Зарегистрироваться"}
+          />
         </form>
         <p className={style.text}>
           Уже есть акаунт? <Link to="/sigin"> Войти</Link>

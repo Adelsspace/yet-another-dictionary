@@ -17,7 +17,12 @@ const userSlice = createSlice({
     setIsLogged(state, action: PayloadAction<boolean>) {
       state.isLogged = action.payload;
     },
+    setLoginAndIsLoggedField(state, action: PayloadAction<string>) {
+      state.login = action.payload;
+      state.isLogged = true;
+    },
   },
 });
-export const { setLogin, setIsLogged } = userSlice.actions;
+export const { setLogin, setIsLogged, setLoginAndIsLoggedField } =
+  userSlice.actions;
 export default userSlice.reducer;
