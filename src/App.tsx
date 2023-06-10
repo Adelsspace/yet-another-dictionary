@@ -3,15 +3,34 @@ import MainLayout from "./layouts/MainLaoyut";
 import "./scss/App.scss";
 import NotFound from "./pages/NotFound";
 import { Home } from "./pages/Home";
-import { Login } from "./pages/Login";
-import { Registration } from "./pages/Registration";
 import { searchLoggedUser } from "./utils/searchLoggedUser";
 import { useDispatch } from "react-redux";
 import { setUserData } from "./redux/user/slice";
-import { Favorites } from "./pages/Favorites";
-import { History } from "./pages/History";
 import { WordCard } from "./pages/WordCard";
 import { getUserDataFromDatabase } from "./utils/getUserDataFromDatabase";
+import React, { Suspense } from "react";
+
+const Registration = React.lazy(() =>
+  import(/* webpackChunkName: "RegistrationPage"*/ "./pages/Registration").then(
+    (m) => ({ default: m.Registration })
+  )
+);
+const Favorites = React.lazy(() =>
+  import(/* webpackChunkName: "Favorites"*/ "./pages/Favorites").then((m) => ({
+    default: m.Favorites,
+  }))
+);
+const Login = React.lazy(() =>
+  import(/* webpackChunkName: "Login"*/ "./pages/Login").then((m) => ({
+    default: m.Login,
+  }))
+);
+const History = React.lazy(() =>
+  import(/* webpackChunkName: "History"*/ "./pages/History").then((m) => ({
+    default: m.History,
+  }))
+);
+export const SubmittingRequirementsContext = React.createContext("");
 
 function App() {
   const dispatch = useDispatch();
@@ -29,10 +48,42 @@ function App() {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route path="" element={<Home />} />
-        <Route path="sigin" element={<Login />} />
-        <Route path="signup" element={<Registration />} />
-        <Route path="favorites" element={<Favorites />} />
-        <Route path="history" element={<History />} />
+        <Route
+          path="sigin"
+          element={
+            <Suspense fallback={<div>загрузка страницы входа</div>}>
+              <Login />
+            </Suspense>
+          }
+        />
+        <Route
+          path="signup"
+          element={
+            <Suspense fallback={<div>загрузка страницы регистрации</div>}>
+              <Registration />
+            </Suspense>
+          }
+        />
+        <Route
+          path="favorites"
+          element={
+            <Suspense fallback={<div>загрузка избранного</div>}>
+              <Favorites />
+            </Suspense>
+          }
+        />
+        <Route
+          path="history"
+          element={
+            <Suspense fallback={<div>загрузка истории</div>}>
+              <SubmittingRequirementsContext.Provider
+                value={"Я воспользовался Контекст API 🎉"}
+              >
+                <History />
+              </SubmittingRequirementsContext.Provider>
+            </Suspense>
+          }
+        />
         <Route path="wordCard" element={<WordCard />} />
         <Route path="*" element={<NotFound />} />
       </Route>

@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import style from "./FavoritesIndicator.module.scss";
-import { selectFavorites } from "../../redux/user/selectors";
+import { selectFavorites, selectLogin } from "../../redux/user/selectors";
 import { addToFavorites, removeFromFavorites } from "../../redux/user/slice";
+import { addFavoritesInDaatabase } from "../../utils/addFavoritesInDaatabase";
+import { removeFavoritesInDatabase } from "../../utils/removeFavoritesInDatabase";
 
 export const FavoritesIndicator = (queryParam: {
   text: string;
@@ -10,13 +12,16 @@ export const FavoritesIndicator = (queryParam: {
 }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
+  const login = useSelector(selectLogin);
   const stringifyedQueryParams = JSON.stringify(queryParam);
 
   const checkboxChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       dispatch(addToFavorites(stringifyedQueryParams));
+      addFavoritesInDaatabase(login, stringifyedQueryParams);
     } else {
       dispatch(removeFromFavorites(stringifyedQueryParams));
+      removeFavoritesInDatabase(login, stringifyedQueryParams);
     }
   };
   return (

@@ -24,9 +24,8 @@ export const SearchedInfo = ({
   const findResult = data ?? [];
 
   if (findResult.length) {
-    const text = findResult[0]?.text;
     const newHistoryEntry = {
-      text: text,
+      text: findResult[0]?.text,
       firstLangCode: firstLangCode,
       secondLangCode: secondLangCode,
       translate: findResult[0]?.tr[0].text,

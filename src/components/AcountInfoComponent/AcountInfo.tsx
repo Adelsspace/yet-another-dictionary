@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectLogin } from "../../redux/user/selectors";
 import { setToInitialState } from "../../redux/user/slice";
@@ -6,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { changeLoggedInDatabase } from "../../utils/changeLoggedInDatabase";
 import { setSearchValue } from "../../redux/translateDirection/slice";
 import sytle from "./AcountInfo.module.scss";
+import { AcountLogin } from "../AcountLoginComponent/AcountLogin";
 
 export const AcountInfo = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export const AcountInfo = () => {
   };
   return (
     <div>
-      <span className={sytle.login}>😎 {login} </span>
+      <AcountLogin login={login} />
       <Link to="favorites">
         <div className={sytle.btn}>Избранное </div>
       </Link>
