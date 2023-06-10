@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  background-color: lightblue;
+  padding: 5px;
+  font-family: inherit;
+  font-size: 16px;
+  border: 0;
+  border-radius: 5px;
+  margin: 15px;
+
+  &:focus {
+    outline: 0;
+  }
+  &:active {
+    transform: scale(0.98);
+  }
+}

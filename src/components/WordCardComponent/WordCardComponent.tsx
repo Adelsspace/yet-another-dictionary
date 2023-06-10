@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Location } from "../../@types/types";
 import style from "./WordCardComponent.module.scss";
 import { SearchedInfo } from "../SearchedInfoComponent/SearchedInfo";
+import { ErrorBoundaries } from "../ErrorBoundariesComponent/ErrorBoundaries";
 export const WordCardComponent = () => {
   const { state } = useLocation() as Location;
   const navigate = useNavigate();
@@ -30,5 +31,5 @@ export const WordCardComponent = () => {
         </div>
       </div>
     );
-  } else return <></>;
+  } else return <ErrorBoundaries />;
 };

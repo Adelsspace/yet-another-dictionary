@@ -1,20 +1,21 @@
 import PropTypes from "prop-types";
 import { yandexAPI } from "../../redux/yandexApi";
 import { SearchInfoProps } from "../../@types/types";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { addToHistory } from "../../redux/user/slice";
 import style from "./SearchedInfo.module.scss";
 import NotFound from "../../pages/NotFound";
 import { selectIsLogged, selectLogin } from "../../redux/user/selectors";
 import { updateUserHistory } from "../../utils/updateUserHistory";
 import { FavoritesIndicator } from "../FavoritesIndicatorComponent/FavoritesIndicator";
+import { useAppDispatch } from "../../redux/store";
 
 export const SearchedInfo = ({
   firstLangCode,
   secondLangCode,
   searchValue,
 }: SearchInfoProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const currentUser = useSelector(selectLogin);
   const isLogged = useSelector(selectIsLogged);
   const { data, error, isLoading } = yandexAPI.useFetachTranslateQuery(

@@ -1,12 +1,12 @@
 import React, { useRef, useState, useCallback } from "react";
 import styles from "./Search.module.scss";
-import { useDispatch } from "react-redux";
 import debounce from "lodash.debounce";
 import { setSearchValue } from "../../redux/translateDirection/slice";
 import clearIcon from "../../assets/images/clearIcon.svg";
+import { useAppDispatch } from "../../redux/store";
 
 export const Search = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [value, setValue] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
 

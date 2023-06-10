@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Select, Space } from "antd";
 import styles from "./TranslateDirection.module.scss";
-import { useDispatch } from "react-redux";
 import {
   setFirstLang,
   setSecondLang,
@@ -11,11 +10,12 @@ import {
   languagesKeys,
   langueagePairs,
 } from "../../assets/languageStore";
+import { useAppDispatch } from "../../redux/store";
 
 type LanguageNames = keyof typeof langueagePairs;
 
 export const TranslateDirection = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [listOfLanguages, setListOfLanguages] = useState(
     langueagePairs[languagesKeys[0] as LanguageNames]
   );

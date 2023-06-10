@@ -1,16 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import style from "./FavoritesIndicator.module.scss";
 import { selectFavorites, selectLogin } from "../../redux/user/selectors";
 import { addToFavorites, removeFromFavorites } from "../../redux/user/slice";
 import { addFavoritesInDaatabase } from "../../utils/addFavoritesInDaatabase";
 import { removeFavoritesInDatabase } from "../../utils/removeFavoritesInDatabase";
+import { useAppDispatch } from "../../redux/store";
 
 export const FavoritesIndicator = (queryParam: {
   text: string;
   firstLangCode: string;
   secondLangCode: string;
 }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const favorites = useSelector(selectFavorites);
   const login = useSelector(selectLogin);
   const stringifyedQueryParams = JSON.stringify(queryParam);

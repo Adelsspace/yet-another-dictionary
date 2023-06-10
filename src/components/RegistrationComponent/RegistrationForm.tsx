@@ -3,12 +3,12 @@ import style from "./Registration.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { isUserInDatabase } from "../../utils/isUserInDatabase";
 import { Inputs, UserData } from "../../@types/types";
-import { useDispatch } from "react-redux";
 import { setUserData } from "../../redux/user/slice";
+import { useAppDispatch } from "../../redux/store";
 
 export const RegistrationForm = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const {
     register,

@@ -5,13 +5,13 @@ import { isUserInDatabase } from "../../utils/isUserInDatabase";
 import { isPasswordCoorect } from "../../utils/isPasswordCorrect";
 import { changeLoggedInDatabase } from "../../utils/changeLoggedInDatabase";
 import { Inputs } from "../../@types/types";
-import { useDispatch } from "react-redux";
 import { setUserData } from "../../redux/user/slice";
 import { getUserDataFromDatabase } from "../../utils/getUserDataFromDatabase";
+import { useAppDispatch } from "../../redux/store";
 
 export const LoginForm = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,

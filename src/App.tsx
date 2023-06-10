@@ -4,11 +4,13 @@ import "./scss/App.scss";
 import NotFound from "./pages/NotFound";
 import { Home } from "./pages/Home";
 import { searchLoggedUser } from "./utils/searchLoggedUser";
-import { useDispatch } from "react-redux";
 import { setUserData } from "./redux/user/slice";
 import { WordCard } from "./pages/WordCard";
 import { getUserDataFromDatabase } from "./utils/getUserDataFromDatabase";
 import React, { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+import { ErrorBoundaries } from "./components/ErrorBoundariesComponent/ErrorBoundaries";
+import { useAppDispatch } from "./redux/store";
 
 const Registration = React.lazy(() =>
   import(/* webpackChunkName: "RegistrationPage"*/ "./pages/Registration").then(
@@ -33,7 +35,7 @@ const History = React.lazy(() =>
 export const SubmittingRequirementsContext = React.createContext("");
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   if (!localStorage.getItem("users"))
     localStorage.setItem("users", JSON.stringify([]));
 
@@ -84,7 +86,16 @@ function App() {
             </Suspense>
           }
         />
-        <Route path="wordCard" element={<WordCard />} />
+
+        <Route
+          path="wordCard"
+          element={
+            <ErrorBoundary fallback={<ErrorBoundaries />}>
+              <WordCard />{" "}
+            </ErrorBoundary>
+          }
+        />
+
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
