@@ -1,9 +1,10 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Location } from "../../@types/types";
 import style from "./WordCardComponent.module.scss";
 import { SearchedInfo } from "../SearchedInfoComponent/SearchedInfo";
 export const WordCardComponent = () => {
   const { state } = useLocation() as Location;
+  const navigate = useNavigate();
   let searchValue = "";
   let firstLangCode = "";
   let secondLangCode = "";
@@ -14,9 +15,9 @@ export const WordCardComponent = () => {
       <div className={style.wrapper}>
         <div className={style.card}>
           <div className={style.navigation}>
-            <Link to="/history">
-              <div className={style.btn}>Назад</div>
-            </Link>
+            <button className={style.btn} onClick={() => navigate(-1)}>
+              Назад
+            </button>
             <Link to="/">
               <div className={style.btn}>Продолжить поиск</div>
             </Link>

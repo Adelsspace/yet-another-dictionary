@@ -22,7 +22,7 @@ export const AcountInfo = () => {
     <div>
       <span className={sytle.login}>😎 {login} </span>
       <Link to="favorites">
-        <div className={sytle.btn}>Закладки</div>
+        <div className={sytle.btn}>Избранное </div>
       </Link>
       <Link to="history">
         <div className={sytle.btn}>История</div>

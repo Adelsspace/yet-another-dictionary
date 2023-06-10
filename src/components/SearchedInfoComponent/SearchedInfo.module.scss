@@ -3,7 +3,8 @@
   border-radius: 10px;
   -webkit-box-shadow: 0 0 50px #c9c9c9;
   box-shadow: 0 0 50px #c9c9c9;
-  width: 400px;
+  min-width: 300px;
+  position: relative;
 }
 
 .header {

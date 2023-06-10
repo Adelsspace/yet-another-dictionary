@@ -24,7 +24,7 @@ export const HistoryComponent = () => {
                   </span>
                   <Link
                     className={style.btn}
-                    to="wordCard"
+                    to="/wordCard"
                     state={{
                       searchValue: word.text,
                       firstLangCode: word.firstLangCode,

@@ -53,7 +53,7 @@ export type History = {
   text: string;
   firstLangCode: string;
   secondLangCode: string;
-  translate: string;
+  translate?: string;
 };
 
 export type LanguageCodeToName = {

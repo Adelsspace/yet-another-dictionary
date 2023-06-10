@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToHistory } from "../../redux/user/slice";
 import style from "./SearchedInfo.module.scss";
 import NotFound from "../../pages/NotFound";
-import { selectLogin } from "../../redux/user/selectors";
+import { selectIsLogged, selectLogin } from "../../redux/user/selectors";
 import { updateUserHistory } from "../../utils/updateUserHistory";
+import { FavoritesIndicator } from "../FavoritesIndicatorComponent/FavoritesIndicator";
 
 export const SearchedInfo = ({
   firstLangCode,
@@ -15,6 +16,7 @@ export const SearchedInfo = ({
 }: SearchInfoProps) => {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectLogin);
+  const isLogged = useSelector(selectIsLogged);
   const { data, error, isLoading } = yandexAPI.useFetachTranslateQuery(
     { firstLangCode, secondLangCode, searchValue },
     { skip: !searchValue?.length }
@@ -22,8 +24,9 @@ export const SearchedInfo = ({
   const findResult = data ?? [];
 
   if (findResult.length) {
+    const text = findResult[0]?.text;
     const newHistoryEntry = {
-      text: findResult[0]?.text,
+      text: text,
       firstLangCode: firstLangCode,
       secondLangCode: secondLangCode,
       translate: findResult[0]?.tr[0].text,
@@ -42,7 +45,14 @@ export const SearchedInfo = ({
 
       {Boolean(findResult.length) ? (
         <div className={style.wrapper}>
-          <div className={style.header}>{findResult[0]?.text}</div>
+          {isLogged && (
+            <FavoritesIndicator
+              text={searchValue}
+              firstLangCode={firstLangCode}
+              secondLangCode={secondLangCode}
+            />
+          )}
+          <div className={style.header}>{searchValue}</div>
           <div>
             <ul>
               {findResult.map((obj) => (
