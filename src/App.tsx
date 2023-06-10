@@ -11,6 +11,7 @@ import React, { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorBoundaries } from "./components/ErrorBoundariesComponent/ErrorBoundaries";
 import { useAppDispatch } from "./redux/store";
+import { createLocalStorageForFirstRun } from "./utils/createLocalStorageForFirstRun";
 
 const Registration = React.lazy(() =>
   import(/* webpackChunkName: "RegistrationPage"*/ "./pages/Registration").then(
@@ -36,9 +37,7 @@ export const SubmittingRequirementsContext = React.createContext("");
 
 function App() {
   const dispatch = useAppDispatch();
-  if (!localStorage.getItem("users"))
-    localStorage.setItem("users", JSON.stringify([]));
-
+  createLocalStorageForFirstRun();
   const loggedUser = searchLoggedUser();
 
   if (loggedUser) {

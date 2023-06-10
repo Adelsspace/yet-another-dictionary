@@ -27,6 +27,7 @@ export const FavoritesIndicator = (queryParam: {
   };
   return (
     <div className={style.indicator}>
+      <span>Избранное: </span>
       <input
         type="checkbox"
         checked={favorites.includes(stringifyedQueryParams)}

@@ -40,7 +40,7 @@ export const TranslateDirection = () => {
   return (
     <Space wrap className={styles.container}>
       <Select
-        defaultValue={languagesKeys[0] as any}
+        defaultValue={languagesKeys[0] as LanguageNames}
         className={styles.select}
         onChange={handleFirstLangChange}
         options={languagesKeys.map((lang) => ({
@@ -50,7 +50,7 @@ export const TranslateDirection = () => {
       />
       <Select
         className={styles.select}
-        value={langueageSecond as any}
+        value={langueageSecond as LanguageNames}
         onChange={onSecondLangChange}
         options={listOfLanguages.map((lang) => ({ label: lang, value: lang }))}
       />

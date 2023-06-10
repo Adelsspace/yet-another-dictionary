@@ -5,6 +5,7 @@ import { isUserInDatabase } from "../../utils/isUserInDatabase";
 import { Inputs, UserData } from "../../@types/types";
 import { setUserData } from "../../redux/user/slice";
 import { useAppDispatch } from "../../redux/store";
+import { addNewUserInDatabase } from "../../utils/addNewUserInDatabase";
 
 export const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -29,11 +30,7 @@ export const RegistrationForm = () => {
       isLogged: true,
     };
 
-    const localStorageUsers = localStorage.getItem("users");
-    if (localStorageUsers) {
-      const users = JSON.parse(localStorageUsers);
-      localStorage.setItem("users", JSON.stringify([...users, newUser]));
-    }
+    addNewUserInDatabase(newUser);
     dispatch(setUserData(newUser));
     reset();
     navigate("/");
