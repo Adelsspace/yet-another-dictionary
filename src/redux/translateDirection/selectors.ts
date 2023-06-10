@@ -10,3 +10,7 @@ export const selectSecondLangCode = (state: RootState) =>
   state.translateDirection.secondLang[1];
 export const selectSearchValue = (state: RootState) =>
   state.translateDirection.searchValue;
+export const selectFirstCode = (state: RootState) =>
+  state.translateDirection.firstLangCode;
+export const selectSecondCode = (state: RootState) =>
+  state.translateDirection.secondLangCode;

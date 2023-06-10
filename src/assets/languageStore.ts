@@ -1,3 +1,5 @@
+import { LanguageCodeToName } from "../@types/types";
+
 export const languageNameToCodePair = {
   Русский: ["Русский", "ru"],
   Английский: ["Английский", "en"],
@@ -34,4 +36,14 @@ export const langueagePairs = {
   Испанский: ["Русский", "Английский"],
   Турецкий: ["Русский", "Английский"],
   Итальянский: ["Русский", "Английский"],
+};
+
+export const languageCodeToName: LanguageCodeToName = {
+  ru: "Русский",
+  en: "Английский",
+  es: "Испанский",
+  de: "Немецкий",
+  fr: "Французкий",
+  tr: "Турецкий",
+  it: "Итальянский",
 };

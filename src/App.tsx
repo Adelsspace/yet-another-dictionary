@@ -7,7 +7,11 @@ import { Login } from "./pages/Login";
 import { Registration } from "./pages/Registration";
 import { searchLoggedUser } from "./utils/searchLoggedUser";
 import { useDispatch } from "react-redux";
-import { setLoginAndIsLoggedField } from "./redux/user/slice";
+import { setLoginAndIsLoggedField, setUserData } from "./redux/user/slice";
+import { Favorites } from "./pages/Favorites";
+import { History } from "./pages/History";
+import { WordCard } from "./pages/WordCard";
+import { getUserDataFromDatabase } from "./utils/getUserDataFromDatabase";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,7 +21,10 @@ function App() {
   const loggedUser = searchLoggedUser();
 
   if (loggedUser) {
-    dispatch(setLoginAndIsLoggedField(loggedUser));
+    const userData = getUserDataFromDatabase(loggedUser);
+    userData.isLogged = true;
+    dispatch(setUserData(userData));
+    // dispatch(setLoginAndIsLoggedField(loggedUser));
   }
   return (
     <Routes>
@@ -25,6 +32,9 @@ function App() {
         <Route path="" element={<Home />} />
         <Route path="sigin" element={<Login />} />
         <Route path="signup" element={<Registration />} />
+        <Route path="favorites" element={<Favorites />} />
+        <Route path="history" element={<History />} />
+        <Route path="history/wordCard" element={<WordCard />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

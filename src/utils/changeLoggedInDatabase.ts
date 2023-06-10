@@ -1,7 +1,7 @@
 import { UserData } from "../@types/types";
 import { getUsersObjectFromDatabase } from "./getUsersObjectFromDatabase";
 
-export const changeLogged = (login: string, condition: boolean) => {
+export const changeLoggedInDatabase = (login: string, condition: boolean) => {
   const users = getUsersObjectFromDatabase();
   const updatedUsers: UserData[] = users.map((user) => {
     if (user.login === login) {

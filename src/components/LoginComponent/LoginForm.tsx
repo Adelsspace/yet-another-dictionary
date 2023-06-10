@@ -3,10 +3,11 @@ import style from "../RegistrationComponent/Registration.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { isUserInDatabase } from "../../utils/isUserInDatabase";
 import { isPasswordCoorect } from "../../utils/isPasswordCorrect";
-import { changeLogged } from "../../utils/chageLogged";
+import { changeLoggedInDatabase } from "../../utils/changeLoggedInDatabase";
 import { Inputs } from "../../@types/types";
 import { useDispatch } from "react-redux";
-import { setIsLogged, setLogin } from "../../redux/user/slice";
+import { setUserData } from "../../redux/user/slice";
+import { getUserDataFromDatabase } from "../../utils/getUserDataFromDatabase";
 
 export const LoginForm = () => {
   const navigate = useNavigate();
@@ -22,9 +23,10 @@ export const LoginForm = () => {
   });
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const { login } = data;
-    dispatch(setIsLogged(true));
-    dispatch(setLogin(login));
-    changeLogged(login, true);
+    changeLoggedInDatabase(login, true);
+    const userData = getUserDataFromDatabase(login);
+    userData.isLogged = true;
+    dispatch(setUserData(userData));
     reset();
     navigate("/");
   };

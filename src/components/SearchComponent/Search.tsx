@@ -19,6 +19,11 @@ export const Search = () => {
     setValue(event.target.value);
     updateSearchValue(event.target.value);
   };
+  const onClickButton = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    const searchValue = inputRef.current?.value || "";
+    dispatch(setSearchValue(searchValue));
+  };
 
   const onClickClear = () => {
     setValue("");
@@ -47,7 +52,9 @@ export const Search = () => {
             />
           )}
         </span>
-        <button className={styles.button}>Найти</button>
+        <button onClick={onClickButton} className={styles.button}>
+          Найти
+        </button>
       </form>
     </div>
   );
