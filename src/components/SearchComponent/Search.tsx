@@ -1,23 +1,24 @@
-import React, { useRef, useState, useCallback } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styles from "./Search.module.scss";
-import debounce from "lodash.debounce";
 import { setSearchValue } from "../../redux/translateDirection/slice";
 import clearIcon from "../../assets/images/clearIcon.svg";
 import { useAppDispatch } from "../../redux/store";
+import { useDebounce } from "../hooks/useDebounce";
 
 export const Search = () => {
   const dispatch = useAppDispatch();
   const [value, setValue] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const debouncedValue = useDebounce(value, 1000);
 
-  const updateSearchValue = useCallback(
-    debounce((str) => dispatch(setSearchValue(str)), 1000),
-    []
-  );
+  useEffect(() => {
+    if (debouncedValue !== "") {
+      dispatch(setSearchValue(debouncedValue));
+    }
+  }, [debouncedValue, dispatch]);
 
   const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
-    updateSearchValue(event.target.value);
   };
   const onClickButton = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
