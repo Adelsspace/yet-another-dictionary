@@ -1,11 +1,16 @@
 import { UserData } from "../@types/types";
 import { getUsersObjectFromDatabase } from "./getUsersObjectFromDatabase";
 
-export const changeLogged = (login: string, condition: boolean) => {
+export const addFavoritesInDaatabase = (
+  login: string,
+  stringifyedFavorites: string
+) => {
   const users = getUsersObjectFromDatabase();
   const updatedUsers: UserData[] = users.map((user) => {
     if (user.login === login) {
-      user.isLogged = condition;
+      if (!user.favorites.includes(stringifyedFavorites)) {
+        user.favorites.push(stringifyedFavorites);
+      }
     }
     return user;
   });

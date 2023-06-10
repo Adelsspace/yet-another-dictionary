@@ -3,12 +3,12 @@ import style from "./Registration.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { isUserInDatabase } from "../../utils/isUserInDatabase";
 import { Inputs, UserData } from "../../@types/types";
-import { useDispatch } from "react-redux";
-import { setIsLogged, setLogin } from "../../redux/user/slice";
+import { setUserData } from "../../redux/user/slice";
+import { useAppDispatch } from "../../redux/store";
 
 export const RegistrationForm = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -34,8 +34,7 @@ export const RegistrationForm = () => {
       const users = JSON.parse(localStorageUsers);
       localStorage.setItem("users", JSON.stringify([...users, newUser]));
     }
-    dispatch(setIsLogged(true));
-    dispatch(setLogin(login));
+    dispatch(setUserData(newUser));
     reset();
     navigate("/");
   };

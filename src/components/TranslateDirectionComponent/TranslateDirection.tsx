@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Select, Space } from "antd";
 import styles from "./TranslateDirection.module.scss";
-import { useDispatch } from "react-redux";
 import {
   setFirstLang,
   setSecondLang,
@@ -11,11 +10,12 @@ import {
   languagesKeys,
   langueagePairs,
 } from "../../assets/languageStore";
+import { useAppDispatch } from "../../redux/store";
 
 type LanguageNames = keyof typeof langueagePairs;
 
-export const TranslateDirection: React.FC = () => {
-  const dispatch = useDispatch();
+export const TranslateDirection = () => {
+  const dispatch = useAppDispatch();
   const [listOfLanguages, setListOfLanguages] = useState(
     langueagePairs[languagesKeys[0] as LanguageNames]
   );
@@ -23,7 +23,7 @@ export const TranslateDirection: React.FC = () => {
     langueagePairs[languagesKeys[0] as LanguageNames][0]
   );
 
-  const handleProvinceChange = (value: LanguageNames) => {
+  const handleFirstLangChange = (value: LanguageNames) => {
     setListOfLanguages(langueagePairs[value]);
     setLangueageSecond(langueagePairs[value][0]);
 
@@ -42,7 +42,7 @@ export const TranslateDirection: React.FC = () => {
       <Select
         defaultValue={languagesKeys[0] as any}
         className={styles.select}
-        onChange={handleProvinceChange}
+        onChange={handleFirstLangChange}
         options={languagesKeys.map((lang) => ({
           label: lang,
           value: lang,

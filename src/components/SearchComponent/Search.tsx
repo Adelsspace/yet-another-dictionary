@@ -1,12 +1,12 @@
 import React, { useRef, useState, useCallback } from "react";
 import styles from "./Search.module.scss";
-import { useDispatch } from "react-redux";
 import debounce from "lodash.debounce";
 import { setSearchValue } from "../../redux/translateDirection/slice";
 import clearIcon from "../../assets/images/clearIcon.svg";
+import { useAppDispatch } from "../../redux/store";
 
 export const Search = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [value, setValue] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -18,6 +18,11 @@ export const Search = () => {
   const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
     updateSearchValue(event.target.value);
+  };
+  const onClickButton = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    const searchValue = inputRef.current?.value || "";
+    dispatch(setSearchValue(searchValue));
   };
 
   const onClickClear = () => {
@@ -47,7 +52,9 @@ export const Search = () => {
             />
           )}
         </span>
-        <button className={styles.button}>Найти</button>
+        <button onClick={onClickButton} className={styles.button}>
+          Найти
+        </button>
       </form>
     </div>
   );

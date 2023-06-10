@@ -8,3 +8,4 @@ export * from "./RegistrationComponent/RegistrationForm";
 export * from "./LoginComponent/LoginForm";
 export * from "./AuthenticationComponent/Authentication";
 export * from "./AcountInfoComponent/AcountInfo";
+export * from "./SearchedInfoComponent/SearchedInfo";

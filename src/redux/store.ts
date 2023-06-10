@@ -3,6 +3,7 @@ import translateDirection from "./translateDirection/slice";
 import userSlice from "./user/slice";
 import { useDispatch } from "react-redux";
 import { yandexAPI } from "./yandexApi";
+import { loggerMiddleware } from "./loggerMiddleware";
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,7 @@ export const store = configureStore({
     [yandexAPI.reducerPath]: yandexAPI.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(yandexAPI.middleware),
+    getDefaultMiddleware().concat(yandexAPI.middleware, loggerMiddleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
