@@ -1,16 +1,18 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Location } from "../../@types/types";
+import { Link, useNavigate } from "react-router-dom";
 import style from "./WordCardComponent.module.scss";
 import { SearchedInfo } from "../SearchedInfoComponent/SearchedInfo";
 import { ErrorBoundaries } from "../ErrorBoundariesComponent/ErrorBoundaries";
 export const WordCardComponent = () => {
-  const { state } = useLocation() as Location;
-  const navigate = useNavigate();
   let searchValue = "";
   let firstLangCode = "";
   let secondLangCode = "";
-  if (state) {
-    ({ searchValue, firstLangCode, secondLangCode } = state);
+  const navigate = useNavigate();
+  let params = window.location.search.substring(1);
+  if (params) {
+    let paramsArray = params.split("-");
+    firstLangCode = paramsArray[0];
+    secondLangCode = paramsArray[1];
+    searchValue = window.decodeURIComponent(paramsArray[2]);
 
     return (
       <div className={style.wrapper}>

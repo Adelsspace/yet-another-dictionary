@@ -26,12 +26,7 @@ export const HistoryComponent = () => {
                     {word.secondLangCode}
                   </span>
                   <Link
-                    to="/wordCard"
-                    state={{
-                      searchValue: word.text,
-                      firstLangCode: word.firstLangCode,
-                      secondLangCode: word.secondLangCode,
-                    }}
+                    to={`/wordCard?${word.firstLangCode}-${word.secondLangCode}-${word.text}`}
                   >
                     <button className={style.btn}> Подробнее</button>
                   </Link>

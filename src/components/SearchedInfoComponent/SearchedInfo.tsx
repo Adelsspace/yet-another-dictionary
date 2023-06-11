@@ -79,7 +79,7 @@ export const SearchedInfo = ({
             </ul>
           </div>
           <Link
-            to="/wordCard"
+            to={`/wordCard?${firstLangCode}-${secondLangCode}-${searchValue}`}
             state={{
               searchValue: searchValue,
               firstLangCode: firstLangCode,

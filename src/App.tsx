@@ -90,7 +90,15 @@ function App() {
           path="wordCard"
           element={
             <ErrorBoundary fallback={<ErrorBoundaries />}>
-              <WordCard />{" "}
+              <WordCard />
+            </ErrorBoundary>
+          }
+        />
+        <Route
+          path="wordCard:query"
+          element={
+            <ErrorBoundary fallback={<ErrorBoundaries />}>
+              <WordCard />
             </ErrorBoundary>
           }
         />
