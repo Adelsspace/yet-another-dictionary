@@ -26,7 +26,6 @@ export const FavoritesComponent = () => {
                     {word.secondLangCode}) : {word.translate}
                   </span>
                   <Link
-                    className={style.btn}
                     to="/wordCard"
                     state={{
                       searchValue: word.text,
@@ -34,7 +33,7 @@ export const FavoritesComponent = () => {
                       secondLangCode: word.secondLangCode,
                     }}
                   >
-                    Подробнее
+                    <button className={style.btn}>Подробнее</button>
                   </Link>
                   <FavoritesIndicator
                     text={word.text}
@@ -49,8 +48,8 @@ export const FavoritesComponent = () => {
           <h3 className={style.noHistory}>У вас нет избранных слов 💡</h3>
         )}
 
-        <Link className={style.btn} to={"/"}>
-          Продолжить поиск
+        <Link to={"/"}>
+          <button className={style.btn}> Продолжить поиск</button>
         </Link>
       </div>
     </div>

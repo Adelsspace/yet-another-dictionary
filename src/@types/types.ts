@@ -75,6 +75,7 @@ export type SearchInfoProps = {
   firstLangCode: string;
   secondLangCode: string;
   searchValue: string;
+  fullCard?: boolean;
 };
 
 export type Location = {

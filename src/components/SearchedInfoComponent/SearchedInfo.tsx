@@ -8,11 +8,13 @@ import NotFound from "../../pages/NotFound";
 import { selectIsLogged, selectLogin } from "../../redux/user/selectors";
 import { updateUserHistory } from "../../utils/updateUserHistory";
 import { FavoritesIndicator } from "../FavoritesIndicatorComponent/FavoritesIndicator";
+import { Link } from "react-router-dom";
 
 export const SearchedInfo = ({
   firstLangCode,
   secondLangCode,
   searchValue,
+  fullCard = false,
 }: SearchInfoProps) => {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectLogin);
@@ -52,6 +54,9 @@ export const SearchedInfo = ({
             />
           )}
           <div className={style.header}>{searchValue}</div>
+          {fullCard && findResult[0]?.ts && (
+            <div>Транскрипция {findResult[0]?.ts}</div>
+          )}
           <div>
             <ul>
               {findResult.map((obj) => (
@@ -61,6 +66,11 @@ export const SearchedInfo = ({
                     {obj.tr.map((translate, i: number) => (
                       <li key={i} className={style.translate}>
                         {translate.text}
+                        {fullCard && translate.syn && (
+                          <div>
+                            Синонимы: {translate.syn.map((value) => value.text)}
+                          </div>
+                        )}
                       </li>
                     ))}
                   </ol>
@@ -68,6 +78,16 @@ export const SearchedInfo = ({
               ))}
             </ul>
           </div>
+          <Link
+            to="/wordCard"
+            state={{
+              searchValue: searchValue,
+              firstLangCode: firstLangCode,
+              secondLangCode: secondLangCode,
+            }}
+          >
+            {!fullCard && <button className={style.btn}>Подробнее</button>}
+          </Link>
         </div>
       ) : (
         <NotFound />
@@ -80,4 +100,5 @@ SearchedInfo.propTypes = {
   firstLangCode: PropTypes.string.isRequired,
   secondLangCode: PropTypes.string.isRequired,
   searchValue: PropTypes.string.isRequired,
+  fullCard: PropTypes.bool,
 };

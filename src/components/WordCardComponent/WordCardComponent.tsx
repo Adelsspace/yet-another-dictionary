@@ -27,6 +27,7 @@ export const WordCardComponent = () => {
             searchValue={searchValue}
             firstLangCode={firstLangCode}
             secondLangCode={secondLangCode}
+            fullCard={true}
           />
         </div>
       </div>
