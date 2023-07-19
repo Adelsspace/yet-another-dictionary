@@ -9,6 +9,11 @@ const MainLayout: React.FC = () => {
       <div className="content">
         <Outlet />
       </div>
+      <div className="ref">
+        <a target="_blank" href=" http://api.yandex.ru/dictionary">
+          «Реализовано с помощью сервиса «API «Яндекс.Словарь»{" "}
+        </a>
+      </div>
     </div>
   );
 };
