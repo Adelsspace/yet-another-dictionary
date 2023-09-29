@@ -1,4 +1,7 @@
 # Yet another Dictionary - онлайн словарь
+![0](https://github.com/Adelsspace/yet-another-dictionary/assets/95516400/4912bd43-cd4a-47f1-a8c8-f6eb50e92f84)
+![1](https://github.com/Adelsspace/yet-another-dictionary/assets/95516400/fdbd4dd4-b129-4a01-928f-4e9ccca714b9)
+![image](https://github.com/Adelsspace/yet-another-dictionary/assets/95516400/9e87a851-97ff-4f44-ab25-b27f2e23c32a)
 
 ## **1 уровень (необходимый минимум)**
 
